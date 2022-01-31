@@ -7,7 +7,7 @@ const router = express.Router()
 
 // Nested Controllers
 router.get('/', (req, res) => {
-	res.send('index')
+	res.redirect('/houses')
 })
 // Export
 module.exports = router
