@@ -5,8 +5,15 @@ const router = express.Router()
 
 // Views
 
-// Create here a controller that accepts GET requests and renders the "search" page
+// Basic Controllers
 router.get('/', (req, res) => {
+	res.send('profil-page')
+})
+// Nested Controllers
+router.get('/', (req, res) => {
+	res.send('profil')
+})
+router.patch('/', (req, res) => {
 	res.send('profil')
 })
 // Export

@@ -5,7 +5,7 @@ const router = express.Router()
 
 // Views
 
-// Create here a controller that accepts GET requests and renders the "search" page
+// Nested Controllers
 router.get('/', (req, res) => {
 	res.send('index')
 })

@@ -5,8 +5,31 @@ const router = express.Router()
 
 // Views
 
-// Create here a controller that accepts GET requests and renders the "search" page
+// Basic Controller
 router.get('/', (req, res) => {
+	res.send('houses-page')
+})
+
+//Nested Controllers
+router.get('/', (req, res) => {
+	res.send('houses')
+})
+router.get('/create', (req, res) => {
+	res.send('houses')
+})
+router.get('/:id', (req, res) => {
+	res.send('houses')
+})
+router.get('/:id/edit', (req, res) => {
+	res.send('houses')
+})
+router.post('/', (req, res) => {
+	res.send('houses')
+})
+router.patch('/:id', (req, res) => {
+	res.send('houses')
+})
+router.delete('/:id', (req, res) => {
 	res.send('houses')
 })
 // Export

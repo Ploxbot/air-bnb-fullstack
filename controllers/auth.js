@@ -5,9 +5,26 @@ const router = express.Router()
 
 // Views
 
-// Create here a controller that accepts GET requests and renders the "search" page
+// Basic Controller
 router.get('/', (req, res) => {
-	res.send('auth')
+	res.send('Authpage')
+})
+
+// Nested Controllers
+router.get('/signup', (req, res) => {
+	res.send('signup')
+})
+router.get('/login', (req, res) => {
+	res.send('login')
+})
+router.post('/signup', (req, res) => {
+  res.send('signup')
+})
+router.post('/login', (req, res) => {
+	res.send('login')
+})
+router.get('/logout', (req, res) => {
+	res.send('logout')
 })
 // Export
 module.exports = router
