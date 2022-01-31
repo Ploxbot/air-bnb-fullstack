@@ -6,13 +6,10 @@ const router = express.Router()
 // Views
 
 // Basic Controller
-router.get('/', (req, res) => {
-	res.send('houses-page')
-})
 
 //Nested Controllers
-router.get('/', (req, res) => {
-	res.render('houses')
+router.get('/list', (req, res) => {
+	res.render('houses/list')
 })
 router.get('/create', (req, res) => {
 	res.render('houses/create')
