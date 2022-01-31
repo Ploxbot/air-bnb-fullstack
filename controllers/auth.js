@@ -15,7 +15,7 @@ router.get('/signup', (req, res) => {
 	res.send('signup')
 })
 router.get('/login', (req, res) => {
-	res.send('login')
+	res.render('login')
 })
 router.post('/signup', (req, res) => {
   res.send('signup')
