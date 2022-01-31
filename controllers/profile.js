@@ -6,15 +6,13 @@ const router = express.Router()
 // Views
 
 // Basic Controllers
-router.get('/', (req, res) => {
-	res.send('profil-page')
-})
+
 // Nested Controllers
 router.get('/', (req, res) => {
-	res.send('profil')
+	res.render('profile')
 })
 router.patch('/', (req, res) => {
-	res.send('profil')
+	res.send('profile')
 })
 // Export
 module.exports = router

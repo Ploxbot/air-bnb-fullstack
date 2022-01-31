@@ -53,7 +53,7 @@ app.use('/bookings', require('./controllers/bookings'))
 
 app.use('/houses', require('./controllers/houses'))
 
-app.use('/profil', require('./controllers/profil'))
+app.use('/profile', require('./controllers/profile'))
 
 app.use('/reviews', require('./controllers/reviews'))
 
