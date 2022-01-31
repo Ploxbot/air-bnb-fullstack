@@ -49,7 +49,7 @@ app.use('/', require('./controllers/'))
 
 app.use('/auth', require('./controllers/auth'))
 
-app.use('/booking', require('./controllers/booking'))
+app.use('/booking', require('./controllers/bookings'))
 
 app.use('/houses', require('./controllers/houses'))
 
