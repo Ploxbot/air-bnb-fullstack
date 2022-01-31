@@ -12,16 +12,16 @@ router.get('/', (req, res) => {
 
 //Nested Controllers
 router.get('/', (req, res) => {
-	res.send('houses')
+	res.render('houses')
 })
 router.get('/create', (req, res) => {
-	res.send('houses')
+	res.render('houses/create')
 })
 router.get('/:id', (req, res) => {
-	res.send('houses')
+	res.render('houses/one')
 })
 router.get('/:id/edit', (req, res) => {
-	res.send('houses')
+	res.render('houses/edit')
 })
 router.post('/', (req, res) => {
 	res.send('houses')

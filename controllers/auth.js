@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 
 // Nested Controllers
 router.get('/signup', (req, res) => {
-	res.send('signup')
+	res.render('signup')
 })
 router.get('/login', (req, res) => {
 	res.render('login')
