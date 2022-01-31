@@ -1,3 +1,5 @@
+const mongoose = require('mongoose')
+
 mongoose.model('houses', {
 	description: {
 		type: String,
