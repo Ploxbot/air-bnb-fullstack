@@ -26,7 +26,14 @@ router.post('/signup', async (req, res, next) => {
 	try {
 		// console.log(req.body);
 		let newUser = await Users.create(req.body)
-		console.log(newUser);
+		//console.log(newUser);
+		req.login(newUser, (err) => {
+			if (err) {
+				throw err
+			} else {
+				res.redirect('/houses')
+			}
+		})
 	} catch (err) {
 		next (err)
 	}
@@ -38,5 +45,6 @@ router.post('/login', (req, res) => {
 router.get('/logout', (req, res) => {
 	res.send('logout')
 })
+
 // Export
 module.exports = router

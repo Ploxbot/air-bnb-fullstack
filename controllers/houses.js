@@ -2,12 +2,8 @@
 const express = require('express')
 const router = express.Router()
 
-
 // Views
 
-// Basic Controller
-
-//Nested Controllers
 router.get('/list', (req, res) => {
 	res.render('houses/list')
 })
@@ -29,5 +25,6 @@ router.patch('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
 	res.send('houses')
 })
+
 // Export
 module.exports = router
