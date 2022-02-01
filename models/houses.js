@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.model('houses', {
+module.exports.mongoose.model('houses', {
 	description: {
 		type: String,
 		required: true
