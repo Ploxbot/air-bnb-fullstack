@@ -2,6 +2,7 @@
 const express = require('express')
 const router = express.Router()
 const Houses = require('../models/houses')
+const User = require('../models/users')
 
 
 // Views
@@ -43,14 +44,16 @@ router.get('/:id/edit', (req, res, next) => {
 	}
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
 	try {
 		if (!req.isAuthenticated()){
 			res.redirect('auth/login')
 		} else {
-			//console.log('asdas');
-			let newHouse = await Houses.create(req.body)
-		}
+			console.log(req.body);
+			let house = await Houses.create(req.body, {host: = req.body._id})
+			console.log(house)
+			res.redirect(`/houses/${house._id}`)
+			}
 	} catch(err) {
 		next(err)
 	}
