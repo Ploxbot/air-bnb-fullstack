@@ -1,6 +1,7 @@
-	{{> nav}}
+{{> nav}}
+<div class="container-xxl m-3">
 	<p class="fs-1 container-xxl mb-3">List a House</p>
-	<form>
+	<form action="/houses/create" method="post">
 		<div class="container-xxl mb-3">
 			<label for="exampleFormControlInput1" class="form-label">Short Title</label>
 			<input type="text" class="form-control" required />
@@ -26,9 +27,11 @@
 			<label for="exampleFormControlTextarea1" class="form-label">
 				Price per Night
 			</label>
-			<div class="container-xxl mb-3">
+			<div>
 				<input class="form-control" type="number" placeholder="$" name="" value="" min="1"/>
 			</div>
+		</div>
+		<div class="container-xxl mb-3">
 			<label for="formFile" class="form-label">
 				Add Photos (Up to 9 Photos)
 			</label>
@@ -65,3 +68,4 @@
 			<button type="button" class="btn btn-success mt-3">Submit</button>
 		</div>
 	</form>
+</div>
