@@ -18,19 +18,19 @@ router.get('/signup', (req, res) => {
 
 //POST LOGIN CONTROLLER
 router.post('/login', async (req, res) => {
+	console.log(req.body);
 	let searchUser = await Users.findOne({
-		'email':(req.body.email),
-		'password':(req.body.password)
+		email: req.body.email,
+		password: req.body.password
 	})
-
-	console.log({searchUser});
+	console.log('search user: ', searchUser);
 	})
 
 //POST SINGNUP CONTROLLER
 router.post('/signup', async (req, res, next) => {
 	try {
 	//USER EXSISTS CHECK
-		let searchUser = await Users.findOne({email:(req.body.email)})
+		let searchUser = await Users.findOne({email: req.body.email })
 		console.log({searchUser});
 		if (searchUser) {
 			throw new Error('User-Email alread exsists')
