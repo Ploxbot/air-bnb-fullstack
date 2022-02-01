@@ -4,8 +4,13 @@ const router = express.Router()
 
 // Views
 
-router.get('/', (req, res) => {
-	res.render('houses/list')
+router.get('/', (req, res, next) => {
+	try {
+		console.log(req.user)
+		res.render('houses/list', { user: req.user })
+	} catch (err) {
+		next(err)
+	}
 })
 //CREATE HOUSES CONTROLLER
 router.get('/create', (req, res) => {
