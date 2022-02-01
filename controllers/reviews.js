@@ -5,7 +5,11 @@ const router = express.Router()
 // Views
 
 router.post('/', (req, res) => {
-	res.send('profil')
+	if (!req.isAuthenticated()){
+		res.redirect('auth/login')
+	} else {
+		res.send('profil')
+	}
 })
 
 // Export

@@ -5,10 +5,18 @@ const router = express.Router()
 // Views
 
 router.get('/', (req, res) => {
-	res.render('profile')
+	if (!req.isAuthenticated()){
+		res.redirect('auth/login')
+	} else {
+		res.render('profile')
+	}
 })
 router.patch('/', (req, res) => {
-	res.send('profile')
+	if (!req.isAuthenticated()){
+		res.redirect('auth/login')
+	} else {
+		res.send('profile')
+	}
 })
 
 // Export
