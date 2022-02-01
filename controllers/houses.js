@@ -13,42 +13,68 @@ router.get('/', (req, res, next) => {
 	}
 })
 //CREATE HOUSES CONTROLLER
-router.get('/create', (req, res) => {
-	if (!req.isAuthenticated()){
-		res.redirect('auth/login')
-	} else {
-		res.render('houses/create')
+router.get('/create', (req, res, next) => {
+	try {
+		if (!req.isAuthenticated()){
+			res.redirect('auth/login')
+		} else {
+			res.render('houses/create')
+		}
+	} catch(err) {
+		next(err)
 	}
 })
+
 router.get('/:id', (req, res) => {
 	res.render('houses/one')
 })
-router.get('/:id/edit', (req, res) => {
-	if (!req.isAuthenticated()){
-		res.redirect('auth/login')
-	} else {
-		res.render('houses/edit', { user: req.user })
+
+router.get('/:id/edit', (req, res, next) => {
+	try {
+		if (!req.isAuthenticated()){
+			res.redirect('auth/login')
+		} else {
+			res.render('houses/edit', { user: req.user })
+		}
+	} catch(err) {
+		next(err)
 	}
 })
-router.post('/', (req, res) => {
-	if (!req.isAuthenticated()){
-		res.redirect('auth/login')
-	} else {
-		res.send('houses')
+
+router.post('/', (req, res, next) => {
+	try {
+		if (!req.isAuthenticated()){
+			res.redirect('auth/login')
+		} else {
+			res.send('houses')
+		}
+	} catch(err) {
+		next(err)
 	}
 })
-router.patch('/:id', (req, res) => {
-	if (!req.isAuthenticated()){
-		res.redirect('auth/login')
-	} else {
-		res.send('houses')
+
+
+router.patch('/:id', (req, res, next) => {
+	try {
+		if (!req.isAuthenticated()){
+			res.redirect('auth/login')
+		} else {
+			res.send('houses')
+		}
+	} catch(err) {
+		next(err)
 	}
 })
-router.delete('/:id', (req, res) => {
-	if (!req.isAuthenticated()){
-		res.redirect('auth/login')
-	} else {
-		res.send('houses')
+
+router.delete('/:id', (req, res, next) => {
+	try {
+		if (!req.isAuthenticated()){
+			res.redirect('auth/login')
+		} else {
+			res.send('houses')
+		}
+	} catch(err) {
+		next(err)
 	}
 })
 

@@ -5,10 +5,13 @@ const router = express.Router()
 // Views
 
 router.post('/', (req, res) => {
-	if (!req.isAuthenticated()){
-		res.redirect('auth/login')
-	} else {
-		res.send('profil')
+	try {
+		if (!req.isAuthenticated()){
+			res.redirect('auth/login')
+		} else {
+		res.send('profil')		}
+	} catch(err) {
+		next(err)
 	}
 })
 

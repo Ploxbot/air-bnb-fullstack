@@ -4,11 +4,15 @@ const router = express.Router()
 
 // Views
 
-router.post('/', (req, res) => {
-	if (!req.isAuthenticated()){
-		res.redirect('auth/login')
-	} else {
-		res.send('bookings')
+router.post('/', (req, res, next) => {
+	try {
+		if (!req.isAuthenticated()){
+			res.redirect('auth/login')
+		} else {
+			res.send('bookings')
+		}
+	} catch(err) {
+		next(err)
 	}
 })
 
