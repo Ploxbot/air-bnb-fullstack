@@ -27,7 +27,7 @@ router.get('/:id/edit', (req, res) => {
 	if (!req.isAuthenticated()){
 		res.redirect('auth/login')
 	} else {
-		res.render('houses/edit')
+		res.render('houses/edit', { user: req.user })
 	}
 })
 router.post('/', (req, res) => {
