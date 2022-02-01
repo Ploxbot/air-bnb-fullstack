@@ -4,7 +4,7 @@ const router = express.Router()
 
 // Views
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
 	try {
 		if (!req.isAuthenticated()){
 			res.redirect('auth/login')
