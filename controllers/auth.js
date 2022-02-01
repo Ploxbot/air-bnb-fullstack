@@ -24,7 +24,7 @@ router.get('/login', (req, res) => {
 //POST SINGNUP CONTROLLER
 router.post('/signup', async (req, res, next) => {
 	try {
-//USER EXSITS CHECK
+//USER EXSISTS CHECK
 		let searchUser = await Users.findOne({email:(req.body.email)})
 		console.log({searchUser});
 		if (searchUser) {
