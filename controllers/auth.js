@@ -17,19 +17,35 @@ router.get('/signup', (req, res) => {
 })
 
 //POST LOGIN CONTROLLER
-router.post('/login', async (req, res) => {
-	console.log(req.body);
-	let searchUser = await Users.findOne({
-		email: req.body.email,
-		password: req.body.password
-	})
-	console.log('search user: ', searchUser);
-	})
+router.post('/login', async (req, res, next) => {
+	try {
+		//USER/PW CHECK
+		let searchUser = await Users.findOne({
+			email: req.body.email,
+			password: req.body.password
+		})
+		//LOGIN CHECK
+		if (searchUser) {
+			req.login(searchUser, (err) => {
+				if (err) {
+					throw err
+				} else {
+					res.redirect('/houses')
+				}
+			})
+		} else {
+			throw new Error('Wrong Username/Password Combination')
+		}
+
+	} catch(err) {
+			next(err)
+	}
+})
 
 //POST SINGNUP CONTROLLER
 router.post('/signup', async (req, res, next) => {
 	try {
-	//USER EXSISTS CHECK
+	//USER EXSISTENCE CHECK
 		let searchUser = await Users.findOne({email: req.body.email })
 		console.log({searchUser});
 		if (searchUser) {
@@ -45,8 +61,8 @@ router.post('/signup', async (req, res, next) => {
 				}
 			})
 		}
-	} catch (err) {
-		next (err)
+	} catch(err) {
+			next(err)
 	}
 })
 
