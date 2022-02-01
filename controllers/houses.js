@@ -1,6 +1,8 @@
 // Packages
 const express = require('express')
 const router = express.Router()
+const Houses = require('../models/houses')
+
 
 // Views
 
@@ -18,7 +20,7 @@ router.get('/create', (req, res, next) => {
 		if (!req.isAuthenticated()){
 			res.redirect('auth/login')
 		} else {
-			res.render('houses/create')
+			res.render('houses/create', { user: req.user })
 		}
 	} catch(err) {
 		next(err)
@@ -46,7 +48,8 @@ router.post('/', (req, res, next) => {
 		if (!req.isAuthenticated()){
 			res.redirect('auth/login')
 		} else {
-			res.send('houses')
+			//console.log('asdas');
+			let newHouse = await Houses.create(req.body)
 		}
 	} catch(err) {
 		next(err)
