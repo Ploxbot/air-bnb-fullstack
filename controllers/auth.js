@@ -2,6 +2,9 @@
 const express = require('express')
 const router = express.Router()
 
+//Model
+const Users = require('../models/users')
+
 
 // Views
 
@@ -17,13 +20,18 @@ router.get('/signup', (req, res) => {
 router.get('/login', (req, res) => {
 	res.render('login')
 })
+
+//POST SINGNUP CONTROLLER
 router.post('/signup', async (req, res, next) => {
 	try {
-		console.log(req.body)
+		// console.log(req.body);
+		let newUser = await Users.create(req.body)
+		console.log(newUser);
 	} catch (err) {
 		next (err)
 	}
 })
+
 router.post('/login', (req, res) => {
 	res.send('login')
 })
