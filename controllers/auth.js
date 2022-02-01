@@ -24,16 +24,22 @@ router.get('/login', (req, res) => {
 //POST SINGNUP CONTROLLER
 router.post('/signup', async (req, res, next) => {
 	try {
-		// console.log(req.body);
-		let newUser = await Users.create(req.body)
-		//console.log(newUser);
-		req.login(newUser, (err) => {
-			if (err) {
-				throw err
-			} else {
-				res.redirect('/houses')
-			}
-		})
+//USER EXSITS CHECK
+		let searchUser = await Users.findOne({email:(req.body.email)})
+		console.log({searchUser});
+		if (searchUser) {
+			throw new Error('User-Email alread exsists')
+		} else {
+			let newUser = await Users.create(req.body)
+//LOGIN AUTOMATION
+			req.login(newUser, (err) => {
+				if (err) {
+					throw err
+				} else {
+					res.redirect('/houses')
+				}
+			})
+		}
 	} catch (err) {
 		next (err)
 	}
