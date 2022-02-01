@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-module.exports.mongoose.model('bookings', {
+module.exports = mongoose.model('bookings', {
 	author: {
 		type: ObjectId,
 		ref: 'users'
