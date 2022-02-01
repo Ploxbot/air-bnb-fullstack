@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 	if (!req.isAuthenticated()){
 		res.redirect('auth/login')
 	} else {
-		res.render('profile')
+		res.render('profile', {user: req.user})
 	}
 })
 router.patch('/', (req, res) => {
