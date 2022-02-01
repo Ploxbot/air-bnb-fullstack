@@ -132,3 +132,63 @@ router.post('/signup', async (req, res, next) => { //
 		next (err)
 	}
 })
+
+
+
+
+// logout ---- get the code from the logout lecture add redirect // add try/catch
+req.logout('logout')
+req.session.destroy(err => {
+	try {
+
+		if (err) {
+			next(err)
+		}
+		res.clearCookie('connect.sid')
+		res.redirect('/login')
+	})
+	}
+
+//in  nav.hbs
+<a href="/auth/logout"
+
+
+
+//authentication
+
+router.get('/create', (req, res) => {
+	if (!req.isAuthenticated()){
+		res.redirect('auth/login')
+	} else {
+		res.render('houses/create')
+	}
+})
+
+//NAV STATES two versions of the navbar
+// in html code
+<a href="/profil" >
+//logout button
+<a href="/auth/logout" >logout</a>
+//login button
+<a href="/auth/login" >login</a>
+
+//requests
+
+router.get('/', (req, res) => {
+	console.log(req.user);
+	res.render('houses/list', {req.user})
+})
+
+//in navbar
+<p>{{user.email}}</p>
+{{#if}}
+<a href="/auth/logout" >logout</a>
+
+{{else}}
+<a href="/auth/login" >login</a>
+
+{{/if}}
+
+// replace avatar and name with {{avatar}}{{user}}
+
+// 11. CREATE HOUSE
