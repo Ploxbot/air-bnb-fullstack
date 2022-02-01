@@ -4,7 +4,7 @@ const router = express.Router()
 
 // Views
 
-router.get('/list', (req, res) => {
+router.get('/', (req, res) => {
 	res.render('houses/list')
 })
 router.get('/create', (req, res) => {
