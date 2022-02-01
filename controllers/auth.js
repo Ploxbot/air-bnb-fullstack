@@ -1,37 +1,42 @@
-// Packages
+// PACKAGES
 const express = require('express')
 const router = express.Router()
 
-//Model
+//MOLDEL IMPORT
 const Users = require('../models/users')
 
 
-// Views
-
-// Basic Controller
-router.get('/', (req, res) => {
-	res.send('Authpage')
-})
-
-// Nested Controllers
-router.get('/signup', (req, res) => {
-	res.render('signup')
-})
+//GET LOGIN CONTROLLER
 router.get('/login', (req, res) => {
 	res.render('login')
 })
 
+//GET SIGNUP CONTROLLER
+router.get('/signup', (req, res) => {
+	res.render('signup')
+})
+
+//POST LOGIN CONTROLLER
+router.post('/login', async (req, res) => {
+	let searchUser = await Users.findOne({
+		'email':(req.body.email),
+		'password':(req.body.password)
+	})
+
+	console.log({searchUser});
+	})
+
 //POST SINGNUP CONTROLLER
 router.post('/signup', async (req, res, next) => {
 	try {
-//USER EXSISTS CHECK
+	//USER EXSISTS CHECK
 		let searchUser = await Users.findOne({email:(req.body.email)})
 		console.log({searchUser});
 		if (searchUser) {
 			throw new Error('User-Email alread exsists')
 		} else {
 			let newUser = await Users.create(req.body)
-//LOGIN AUTOMATION
+	//LOGIN AUTOMATION
 			req.login(newUser, (err) => {
 				if (err) {
 					throw err
@@ -45,9 +50,6 @@ router.post('/signup', async (req, res, next) => {
 	}
 })
 
-router.post('/login', (req, res) => {
-	res.send('login')
-})
 router.get('/logout', (req, res) => {
 	res.send('logout')
 })
