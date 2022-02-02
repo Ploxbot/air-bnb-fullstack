@@ -35,13 +35,13 @@ router.get('/create', (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
 	// FIND HOUSE + POPULATE HOST
 	try {
-		let house = await Houses findById(req.params.id).populate(user.host)
-		console.log({house})
+		let house = await Houses.findById(req.params.id).populate('host')
+		console.log(house);
 		// PASS HOUSE TO TEMPLATE
 		res.render('houses/one', {user: req.user, house})
 	} catch (err) {
 			next (err)
-	} 
+	}
 })
 
 router.get('/:id/edit', (req, res, next) => {
@@ -65,7 +65,7 @@ router.post('/', async (req, res, next) => {
 			req.body.host = req.user._id
 			let house = await Houses.create(req.body)
 			console.log(house)
-			res.redirect(`/houses/${house._id}`, { user: req.user })
+			res.redirect(`/houses/${house._id}`)
 			}
 	} catch(err) {
 		next(err)
