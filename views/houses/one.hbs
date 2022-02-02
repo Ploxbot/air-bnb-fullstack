@@ -5,27 +5,27 @@
 			<div class="row">
 				<!-- Selected Image-->
 				<div class="col-6">
-					<img src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png" class="img-fluid" alt="Selected_Image">
+					<img src="{{house.photos.[0]}}" class="img-fluid" alt="Selected_Image">
 				</div>
 				<!-- Images Grid -->
 				<div class="col-6 gap-3 justify-items-centered">
 					<!-- Row1 -->
 					<div class="row p-3 justify-items-centered">
-						<div class="col"><img src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png" width="90px" alt="Img_1"></div>
-						<div class="col"><img src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_02.png" width="90px" alt="Img_2"></div>
-						<div class="col"><img src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_03.png" width="90px" alt="Img_3"></div>
+						<div class="col"><img src="{{house.photos.[0]}}" width="90px"></div>
+						<div class="col"><img src="{{house.photos.[1]}}" width="90px"></div>
+						<div class="col"><img src="{{house.photos.[2]}}" width="90px"></div>
 					</div>
 					<!-- Row2 -->
 					<div class="row p-3 justify-items-centered">
-						<div class="col"><img src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_04.png" width="90px" alt="Img_4"></div>
-						<div class="col"><img src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_05.png" width="90px" alt="Img_5"></div>
-						<div class="col"><img src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png" width="90px" alt="Img_6"></div>
+						<div class="col"><img src="{{house.photos.[3]}}" width="90px"></div>
+						<div class="col"><img src="{{house.photos.[4]}}" width="90px"></div>
+						<div class="col"><img src="{{house.photos.[5]}}" width="90px"></div>
 					</div>
 					<!-- Row3 -->
 					<div class="row p-3 justify-items-centered">
-						<div class="col"><img src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_07.png" width="90px" alt="Img_7"></div>
-						<div class="col"><img src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_08.png" width="90px" alt="Img_8"></div>
-						<div class="col"><img src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_09.png" width="90px" alt="Img_9"></div>
+						<div class="col"><img src="{{house.photos.[6]}}" width="90px"></div>
+						<div class="col"><img src="{{house.photos.[7]}}" width="90px"></div>
+						<div class="col"><img src="{{house.photos.[8]}}" width="90px"></div>
 					</div>
 				</div>
 
@@ -41,9 +41,9 @@
 						<!-- Description -->
 						<div class="col-8 pl-3">
 							<div class=Container-fluid>
-									<h1>Luxury Villa in Chaweng</h1>
+									<h1>{{house.title}}</h1>
 									<i class="fas fa-map-marker-alt green"></i>
-									<small>Koh Samui 4 <strong>·</strong> Rooms</small>
+									<small>{{house.location}} <strong>·</strong> {{house.rooms}} Rooms</small>
 									<!-- host avatar -->
 									<div class="host_avatar mt-lg-2">
 											<div class="avatar_img rounded-circle" style="background-image: url('https://randomuser.me/api/portraits/men/11.jpg');">
@@ -51,14 +51,14 @@
 											<div class="avatar_img m-lg-2">
 													<small>hosted by</small>
 													<p>
-														<img src="https://randomuser.me/api/portraits/men/11.jpg" class="rounded-circle" height="20px" alt="avatar" >
-														Elon Musk
+														<img src="{{house.host.avatar}}" class="rounded-circle" height="20px" alt="avatar" >
+														{{house.host.name}}
 													</p>
 											</div>
 									</div>
 									<!-- description -->
 									<p>
-										Villa Brizo. A two bedroom townhouse, inspired by the goddess of fishermen, set in beautiful mature gardens, with large pool. Great WiFi! Fully furnished with all the comforts of home, including a dishwasher, because you are on holiday! Close to the famous Fisherman's Village and many restaurants. Family friendly with cot, high chair and unbreakable children's tableware. A cost effective, yet luxurious, vacation home. Book with confidence!
+										{{house.description}}
 									</p>
 							</div>
 						</div>
@@ -66,7 +66,7 @@
 						<div class="col-4">
 							<div class="card">
 								<div class="card-body">
-									<h3>$350/night</h3>
+									<h3>{{house.price}} $ / night</h3>
 									<small>0 Reviews</small>
 									<form>
 											<textarea class="form-control" aria-label="With textarea" placeholder="Send the host a message..." rows="5"></textarea>
