@@ -14,7 +14,10 @@ router.get('/', (req, res, next) => {
 		next(err)
 	}
 })
+
+
 //CREATE HOUSES CONTROLLER
+
 router.get('/create', (req, res, next) => {
 	try {
 		if (!req.isAuthenticated()){
@@ -27,8 +30,18 @@ router.get('/create', (req, res, next) => {
 	}
 })
 
-router.get('/:id', (req, res) => {
-	res.render('houses/one')
+//ONE HOUSE CONTROLLER
+
+router.get('/:id', async (req, res, next) => {
+	// FIND HOUSE + POPULATE HOST
+	try {
+		let house = await Houses findById(req.params.id).populate(user.host)
+		console.log({house})
+		// PASS HOUSE TO TEMPLATE
+		res.render('houses/one', {user: req.user, house})
+	} catch (err) {
+			next (err)
+	} 
 })
 
 router.get('/:id/edit', (req, res, next) => {
@@ -49,9 +62,10 @@ router.post('/', async (req, res, next) => {
 			res.redirect('auth/login')
 		} else {
 			console.log(req.body);
-			let house = await Houses.create(req.body.host = req.user._id)
+			req.body.host = req.user._id
+			let house = await Houses.create(req.body)
 			console.log(house)
-			res.redirect(`/houses/${house._id}`)
+			res.redirect(`/houses/${house._id}`, { user: req.user })
 			}
 	} catch(err) {
 		next(err)
