@@ -6,10 +6,13 @@ const Users = require('../models/houses')
 
 // Views
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
 	try {
-		console.log(req.user)
-		res.render('houses/list', { user: req.user })
+		//FIND HOUSES
+		let houses = await Houses.find({})
+		console.log(houses);
+		//PASS TO TEMPLATE
+		res.render('houses/list', { user: req.user, houses })
 	} catch (err) {
 		next(err)
 	}
