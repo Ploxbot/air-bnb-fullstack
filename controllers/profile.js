@@ -14,8 +14,10 @@ router.get('/', async (req, res, next) => {
 		} else {
 			//FIND AND LIST ALL USER HOUSES
 			let houses = await Houses.find({host: req.user})
-			console.log(houses)
-			res.render('profile', {user: req.user}, houses)
+			res.render('profile', {
+				user: req.user,
+				houses
+			})
 		}
 	} catch(err) {
 		next(err)
