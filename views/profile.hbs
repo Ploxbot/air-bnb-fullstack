@@ -21,31 +21,39 @@
 		</div>
 		<!-- My-Listings Container -->
 		<div class="col-9">
-			<form class="" action="/profile" method="get">
+			<form class="" action="/houses/create" method="get">
 				<h1>My Listings</h1>
 				<hr>
-				<button type="button "class="btn btn-outline-primary mb-3">List a House</button>
-				{{#if houses}}
-					{{#each houses as |house|}}
-					<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-3">
-							<div class="card w-100" style="width: 18rem;">
-									<a href="/houses/{{house._id}}">
-										<img src="{{house.photos.[0]}}" class="card-img-top" alt="...">
-									</a>
-									<div class="card-body">
-											<h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-map-marker-alt"></i> {{house.location}} <strong>·</strong> {{house.rooms}} Rooms</h6>
-											<h5 class="card-title">{{house.title}}</h5>
-											<small><i class="fas fa-thumbs-up green"></i> 3 Reviews</small>
-											<small>{{house.price}} $/night</small>
-									</div>
-							</div>
-					</div>
-					{{/each}}
-				{{else}}
-				<textarea class="form-control" aria-label="With textarea">You have no Houses listed</textarea>
-				{{/if}}
+				<button class="btn btn-outline-primary mb-3">List a House</button>
 			</form>
+			{{#if houses}}
+				{{#each houses as |house|}}
+				<div class="card mb-3" style="max-width: 540px;">
+					<div class="row g-0">
+						<div class="col-md-4">
+							<a href="/houses/{{house._id}}">
+								<img src="{{house.photos.[0]}}" class="img-fluid rounded-start" alt="...">
+							</a>
+						</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title">{{house.title}}</h5>
+							<h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-map-marker-alt"></i> {{house.rooms}} Rooms<strong>·</strong>{{house.price}}$/night</h6>
+							<p class="card-text">{{house.description}}</p>
+							<form class="" action="/houses/{{house._id}}/edit" method="get">
+								<button class="btn btn-outline-primary mb-3" href="">Edit</button>
+							</form>
+							<form class="" action="/houses/{{house._id}}" method="get">
+								<button class="btn btn-outline-primary mb-3" href=>View</button>									
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			{{/each}}
+			{{else}}
+			<textarea class="form-control" aria-label="With textarea">You have no Houses listed</textarea>
+			{{/if}}
 		</div>
-
 	</div>
 </div>
