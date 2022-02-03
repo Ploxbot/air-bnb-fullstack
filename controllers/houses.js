@@ -34,40 +34,42 @@ router.get('/create', (req, res, next) => {
 })
 
 //ONE HOUSE CONTROLLER
-
 router.get('/:id', async (req, res, next) => {
 	// FIND HOUSE + POPULATE HOST
 	try {
 		let house = await Houses.findById(req.params.id).populate('host')
-		console.log(house);
+		console.log(house)
 		// PASS HOUSE TO TEMPLATE
 		res.render('houses/one', {user: req.user, house})
 	} catch (err) {
 			next (err)
 	}
 })
-
-router.get('/:id/edit', (req, res, next) => {
+//GET EDIT HOUSE CONTROLLER
+router.get('/:id/edit', async (req, res, next) => {
 	try {
 		if (!req.isAuthenticated()){
 			res.redirect('auth/login')
 		} else {
-			res.render('houses/edit', { user: req.user })
+			//console.log('Edit House');
+			let house = await Houses.findById(req.params.id)
+			console.log(house)
+
+			res.render('houses/edit', { user: req.user, house})
 		}
 	} catch(err) {
 		next(err)
 	}
 })
 
+//CREATE HOUSE CONTROLLER
 router.post('/', async (req, res, next) => {
 	try {
 		if (!req.isAuthenticated()){
 			res.redirect('auth/login')
 		} else {
-			console.log(req.body);
 			req.body.host = req.user._id
 			let house = await Houses.create(req.body)
-			console.log(house)
 			res.redirect(`/houses/${house._id}`)
 			}
 	} catch(err) {
@@ -75,12 +77,13 @@ router.post('/', async (req, res, next) => {
 	}
 })
 
-
+//EDIT HOUSE CONTROLLER
 router.patch('/:id', (req, res, next) => {
 	try {
 		if (!req.isAuthenticated()){
 			res.redirect('auth/login')
 		} else {
+			console.log('hello');
 			res.send('houses')
 		}
 	} catch(err) {
@@ -88,6 +91,7 @@ router.patch('/:id', (req, res, next) => {
 	}
 })
 
+//DELETE HOUSE CONTROLLER
 router.delete('/:id', (req, res, next) => {
 	try {
 		if (!req.isAuthenticated()){
