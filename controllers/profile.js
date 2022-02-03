@@ -1,15 +1,21 @@
 // Packages
 const express = require('express')
 const router = express.Router()
+const Users = require('../models/users')
+const Houses = require('../models/houses')
+
 
 // Views
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
 	try {
 		if (!req.isAuthenticated()){
 			res.redirect('auth/login')
 		} else {
-			res.render('profile', {user: req.user})
+			//FIND AND LIST ALL USER HOUSES
+			let houses = await Houses.find({host: req.user})
+			console.log(houses)
+			res.render('profile', {user: req.user}, houses)
 		}
 	} catch(err) {
 		next(err)
@@ -17,12 +23,22 @@ router.get('/', (req, res, next) => {
 })
 
 
-router.patch('/', (req, res, next) => {
+router.patch('/', async (req, res, next) => {
 	try {
 		if (!req.isAuthenticated()){
 			res.redirect('auth/login')
 		} else {
-			res.render('profile')
+			//FIND AND UPDATE USER
+			{{host: req.user._id}}
+			let user = await Users.findByIdAndUpdate(req.user._id, req.body, {new: true})
+			console.log(user);
+			req.login(user, (err) => {
+				if (err) {
+					throw err
+				} else {
+					res.redirect('/profile')
+				}
+			})
 		}
 	} catch(err) {
 		next(err)
