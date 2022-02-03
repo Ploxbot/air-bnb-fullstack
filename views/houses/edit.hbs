@@ -1,7 +1,7 @@
 {{> nav}}
 <div class="container mb-xl-5">
 	<h1>Edit House</h1>
-	<form action="/houses/create?_mathod=patch" method="post">
+	<form action="/houses/{{house._id}}?_method=patch" method="post">
 		<div class="container-xxl mb-3">
 			<label class="form-label mb-0">Short title</label>
 			<input type="text" class="form-control" required name="title" value="{{house.title}}">
@@ -39,7 +39,7 @@
 			<button class="btn btn-success">Save Changes</button>
 		</div>
 	</form>
-	<form class="container-xxl mb-3" action="/houses/create?_mathod=delete" method="post">
+	<form class="container-xxl mb-3" action="/houses/create?_method=delete" method="post">
 		<button class="btn btn-success">Delete House</button>
 	</form>
 
