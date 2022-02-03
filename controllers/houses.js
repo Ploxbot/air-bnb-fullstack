@@ -2,10 +2,8 @@
 const express = require('express')
 const router = express.Router()
 const Houses = require('../models/houses')
-const Users = require('../models/houses')
 
-// Views
-
+//HOUSES CONTROLLER
 router.get('/', async (req, res, next) => {
 	try {
 		//FIND HOUSES
@@ -20,12 +18,12 @@ router.get('/', async (req, res, next) => {
 
 
 //CREATE HOUSES CONTROLLER
-
 router.get('/create', (req, res, next) => {
 	try {
 		if (!req.isAuthenticated()){
 			res.redirect('auth/login')
 		} else {
+			// RENDER CREATE HOUSE PAGE
 			res.render('houses/create', { user: req.user })
 		}
 	} catch(err) {
@@ -33,28 +31,28 @@ router.get('/create', (req, res, next) => {
 	}
 })
 
-//ONE HOUSE CONTROLLER
+//RENDER ONE-HOUSE-PAGE CONTROLLER
 router.get('/:id', async (req, res, next) => {
-	// FIND HOUSE + POPULATE HOST
 	try {
+		// FIND HOUSE + POPULATE HOST
 		let house = await Houses.findById(req.params.id).populate('host')
 		console.log(house)
-		// PASS HOUSE TO TEMPLATE
+		// PASS DATA TO TEMPLATE
 		res.render('houses/one', {user: req.user, house})
 	} catch (err) {
 			next (err)
 	}
 })
-//GET EDIT HOUSE CONTROLLER
+//RENDER HOUSE-PAGE CONTROLLER
 router.get('/:id/edit', async (req, res, next) => {
 	try {
 		if (!req.isAuthenticated()){
 			res.redirect('auth/login')
 		} else {
-			//console.log('Edit House');
+			//FIND HOUSE
 			let house = await Houses.findById(req.params.id)
 			console.log(house)
-
+			//PASS DATA TO TEMPLATE
 			res.render('houses/edit', { user: req.user, house})
 		}
 	} catch(err) {
@@ -68,8 +66,11 @@ router.post('/', async (req, res, next) => {
 		if (!req.isAuthenticated()){
 			res.redirect('auth/login')
 		} else {
+			//PASS USER-ID TO HOUSE OBJECT
 			req.body.host = req.user._id
+			//CREATE NEW HOUSE IN DATABASE
 			let house = await Houses.create(req.body)
+			//REDIRECT TO NEW HOUSE PAGE
 			res.redirect(`/houses/${house._id}`)
 			}
 	} catch(err) {
